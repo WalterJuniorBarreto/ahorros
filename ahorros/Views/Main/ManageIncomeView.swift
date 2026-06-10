@@ -178,10 +178,27 @@ struct ManageIncomeView: View {
                 note: note
             )
             context.insert(newTransaction)
+            
+            if !isIncomeType {
+                let descriptor = FetchDescriptor<Transaction>()
+                if let allTransactions = try? context.fetch(descriptor) {
+                    let totalSpent = allTransactions
+                        .filter { !$0.isIncome && $0.category == category }
+                        .reduce(0) { $0 + $1.amount }
+                    
+                    let budgetDescriptor = FetchDescriptor<Budget>()
+                    if let budgets = try? context.fetch(budgetDescriptor),
+                       let matchingBudget = budgets.first(where: { $0.category == category }) {
+                        
+                        if totalSpent >= matchingBudget.limitAmount {
+                            NotificationManager.shared.scheduleBudgetAlert(category: category)
+                        }
+                    }
+                }
+            }
         }
         dismiss()
     }
-    
     func deleteTransaction(_ income: Transaction) {
         context.delete(income)
         dismiss()

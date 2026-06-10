@@ -10,9 +10,22 @@
 		8880FACC2FB618B7008B3FE0 /* ahorros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ahorros.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		887C0D592FD9F92200633A20 /* Exceptions for "ahorros" folder in "ahorros" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Views/Main/Untitled.swift,
+			);
+			target = 8880FACB2FB618B7008B3FE0 /* ahorros */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8880FACE2FB618B7008B3FE0 /* ahorros */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				887C0D592FD9F92200633A20 /* Exceptions for "ahorros" folder in "ahorros" target */,
+			);
 			path = ahorros;
 			sourceTree = "<group>";
 		};

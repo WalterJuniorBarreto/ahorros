@@ -3,11 +3,9 @@ import SwiftData
 
 struct DashboardView: View {
     @AppStorage("userName") var userName: String = "Walter"
-   
     @AppStorage("monthlySavingsGoal") var savingsGoal: Double = 0.0
     
     @Query(sort: \Transaction.date, order: .reverse) private var transactions: [Transaction]
-    
     @Query(sort: \SavingGoal.targetDate, order: .forward) private var goals: [SavingGoal]
     
     @State private var showingAddTransaction = false
@@ -33,7 +31,6 @@ struct DashboardView: View {
         NavigationStack {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(spacing: 25) {
-                    
                     HStack {
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Hola, \(userName)")
@@ -52,9 +49,8 @@ struct DashboardView: View {
                     
                     BalanceCardView(balance: currentBalance, income: monthlyIncome, expense: monthlyExpense)
                         .padding(.horizontal, 25)
-                    
+
                     NavigationLink(destination: GoalsListView()) {
-               
                         if let firstGoal = goals.first {
                             GoalProgressView(
                                 savedAmount: firstGoal.savedAmount,
@@ -63,12 +59,24 @@ struct DashboardView: View {
                                 customIcon: firstGoal.icon
                             )
                         } else {
-                           
                             GoalProgressView(savedAmount: totalSaved, goalAmount: savingsGoal)
                         }
                     }
                     .buttonStyle(PlainButtonStyle())
                     .padding(.horizontal, 25)
+                    
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Alertas Inteligentes")
+                            .font(.title3)
+                            .fontWeight(.bold)
+                            .padding(.horizontal, 25)
+                        
+                        FinancialHealthCard(income: monthlyIncome, expense: monthlyExpense)
+                            .padding(.horizontal, 25)
+                        
+                        FinancialInsightsView()
+                    }
+                    .padding(.top, 5)
                     
                     VStack(alignment: .leading, spacing: 15) {
                         HStack {
@@ -133,7 +141,6 @@ struct DashboardView: View {
         }
     }
 }
-
 
 struct BalanceCardView: View {
     var balance: Double
