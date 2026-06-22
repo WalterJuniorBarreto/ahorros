@@ -6,11 +6,60 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		88299BB02FE9779100DB74E0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88299BAF2FE9779100DB74E0 /* WidgetKit.framework */; };
+		88299BB22FE9779100DB74E0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88299BB12FE9779100DB74E0 /* SwiftUI.framework */; };
+		88299BC12FE9779200DB74E0 /* AhorrosWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 88299BAD2FE9779100DB74E0 /* AhorrosWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		88299BBF2FE9779200DB74E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8880FAC42FB618B7008B3FE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88299BAC2FE9779100DB74E0;
+			remoteInfo = AhorrosWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		88299BC62FE9779200DB74E0 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				88299BC12FE9779200DB74E0 /* AhorrosWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		88299BAD2FE9779100DB74E0 /* AhorrosWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AhorrosWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		88299BAF2FE9779100DB74E0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		88299BB12FE9779100DB74E0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		8880FACC2FB618B7008B3FE0 /* ahorros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ahorros.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		88299BC52FE9779200DB74E0 /* Exceptions for "AhorrosWidget" folder in "AhorrosWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 88299BAC2FE9779100DB74E0 /* AhorrosWidgetExtension */;
+		};
+		88299BC82FE978B100DB74E0 /* Exceptions for "ahorros" folder in "AhorrosWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/Budget.swift,
+				Models/SavingGoal.swift,
+				Models/Transaction.swift,
+			);
+			target = 88299BAC2FE9779100DB74E0 /* AhorrosWidgetExtension */;
+		};
 		887C0D592FD9F92200633A20 /* Exceptions for "ahorros" folder in "ahorros" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -21,10 +70,19 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		88299BB32FE9779100DB74E0 /* AhorrosWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				88299BC52FE9779200DB74E0 /* Exceptions for "AhorrosWidget" folder in "AhorrosWidgetExtension" target */,
+			);
+			path = AhorrosWidget;
+			sourceTree = "<group>";
+		};
 		8880FACE2FB618B7008B3FE0 /* ahorros */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				887C0D592FD9F92200633A20 /* Exceptions for "ahorros" folder in "ahorros" target */,
+				88299BC82FE978B100DB74E0 /* Exceptions for "ahorros" folder in "AhorrosWidgetExtension" target */,
 			);
 			path = ahorros;
 			sourceTree = "<group>";
@@ -32,6 +90,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		88299BAA2FE9779100DB74E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88299BB22FE9779100DB74E0 /* SwiftUI.framework in Frameworks */,
+				88299BB02FE9779100DB74E0 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8880FAC92FB618B7008B3FE0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -42,10 +109,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		88299BAE2FE9779100DB74E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88299BAF2FE9779100DB74E0 /* WidgetKit.framework */,
+				88299BB12FE9779100DB74E0 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8880FAC32FB618B7008B3FE0 = {
 			isa = PBXGroup;
 			children = (
 				8880FACE2FB618B7008B3FE0 /* ahorros */,
+				88299BB32FE9779100DB74E0 /* AhorrosWidget */,
+				88299BAE2FE9779100DB74E0 /* Frameworks */,
 				8880FACD2FB618B7008B3FE0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				8880FACC2FB618B7008B3FE0 /* ahorros.app */,
+				88299BAD2FE9779100DB74E0 /* AhorrosWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +140,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		88299BAC2FE9779100DB74E0 /* AhorrosWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88299BC22FE9779200DB74E0 /* Build configuration list for PBXNativeTarget "AhorrosWidgetExtension" */;
+			buildPhases = (
+				88299BA92FE9779100DB74E0 /* Sources */,
+				88299BAA2FE9779100DB74E0 /* Frameworks */,
+				88299BAB2FE9779100DB74E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				88299BB32FE9779100DB74E0 /* AhorrosWidget */,
+			);
+			name = AhorrosWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = AhorrosWidgetExtension;
+			productReference = 88299BAD2FE9779100DB74E0 /* AhorrosWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		8880FACB2FB618B7008B3FE0 /* ahorros */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8880FAD72FB618B8008B3FE0 /* Build configuration list for PBXNativeTarget "ahorros" */;
@@ -68,10 +169,12 @@
 				8880FAC82FB618B7008B3FE0 /* Sources */,
 				8880FAC92FB618B7008B3FE0 /* Frameworks */,
 				8880FACA2FB618B7008B3FE0 /* Resources */,
+				88299BC62FE9779200DB74E0 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				88299BC02FE9779200DB74E0 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				8880FACE2FB618B7008B3FE0 /* ahorros */,
@@ -90,9 +193,12 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2600;
+				LastSwiftUpdateCheck = 2640;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
+					88299BAC2FE9779100DB74E0 = {
+						CreatedOnToolsVersion = 26.4;
+					};
 					8880FACB2FB618B7008B3FE0 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
@@ -113,11 +219,19 @@
 			projectRoot = "";
 			targets = (
 				8880FACB2FB618B7008B3FE0 /* ahorros */,
+				88299BAC2FE9779100DB74E0 /* AhorrosWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		88299BAB2FE9779100DB74E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8880FACA2FB618B7008B3FE0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +242,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		88299BA92FE9779100DB74E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8880FAC82FB618B7008B3FE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +258,75 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		88299BC02FE9779200DB74E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 88299BAC2FE9779100DB74E0 /* AhorrosWidgetExtension */;
+			targetProxy = 88299BBF2FE9779200DB74E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		88299BC32FE9779200DB74E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AhorrosWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AhorrosWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.barretto.ahorros.AhorrosWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88299BC42FE9779200DB74E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AhorrosWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AhorrosWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.barretto.ahorros.AhorrosWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		8880FAD52FB618B8008B3FE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -324,6 +513,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		88299BC22FE9779200DB74E0 /* Build configuration list for PBXNativeTarget "AhorrosWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88299BC32FE9779200DB74E0 /* Debug */,
+				88299BC42FE9779200DB74E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8880FAC72FB618B7008B3FE0 /* Build configuration list for PBXProject "ahorros" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -1,88 +1,81 @@
-//
-//  AhorrosWidget.swift
-//  AhorrosWidget
-//
-//  Created by Alumno Tecsup on 22/06/26.
-//
-
 import WidgetKit
 import SwiftUI
+import SwiftData
 
-struct Provider: AppIntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
+struct Provider: TimelineProvider {
+    @MainActor func placeholder(in context: Context) -> SimpleEntry {
+        SimpleEntry(date: Date(), balance: 1250.0)
     }
 
-    func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+    @MainActor func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
+        let entry = SimpleEntry(date: Date(), balance: 1250.0)
+        completion(entry)
     }
-    
-    func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
+    @MainActor func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        var balance: Double = 0.0
+        
+        do {
+            let config = ModelConfiguration(isStoredInMemoryOnly: false)
+            let container = try ModelContainer(for: Transaction.self, Budget.self, SavingGoal.self, configurations: config)
+            let descriptor = FetchDescriptor<Transaction>()
+            let transactions = try container.mainContext.fetch(descriptor)
+            
+            let income = transactions.filter { $0.isIncome }.reduce(0) { $0 + $1.amount }
+            let expense = transactions.filter { !$0.isIncome }.reduce(0) { $0 + $1.amount }
+            balance = income - expense
+        } catch {
+            balance = 0.0
         }
 
-        return Timeline(entries: entries, policy: .atEnd)
+        let entry = SimpleEntry(date: Date(), balance: balance)
+        let timeline = Timeline(entries: [entry], policy: .atEnd)
+        completion(timeline)
     }
-
-//    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
-//        // Generate a list containing the contexts this widget is relevant in.
-//    }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationAppIntent
+    let balance: Double
 }
 
 struct AhorrosWidgetEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        VStack {
-            Text("Time:")
-            Text(entry.date, style: .time)
-
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Image(systemName: "leaf.fill")
+                    .foregroundColor(.green)
+                Text("Ahorros")
+                    .font(.headline)
+                    .fontWeight(.bold)
+            }
+            
+            Text("Saldo Actual")
+                .font(.caption)
+                .foregroundColor(.gray)
+            
+            Text("S/. \(String(format: "%.2f", entry.balance))")
+                .font(.title2)
+                .fontWeight(.bold)
+                .minimumScaleFactor(0.5)
         }
+        .containerBackground(Color.white, for: .widget)
     }
 }
 
+@main
 struct AhorrosWidget: Widget {
     let kind: String = "AhorrosWidget"
 
     var body: some WidgetConfiguration {
-        AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             AhorrosWidgetEntryView(entry: entry)
-                .containerBackground(.fill.tertiary, for: .widget)
         }
+        .configurationDisplayName("Resumen Financiero")
+        .description("Mira tu saldo actual rápidamente.")
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        return intent
-    }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
-        return intent
-    }
-}
-
-#Preview(as: .systemSmall) {
-    AhorrosWidget()
-} timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
-}
